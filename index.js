@@ -28,6 +28,12 @@ if (__DEV__) {
     // We use the context.set() to set the response time.
     context.set("X-Response-Time", responseTime); // This is set in milliseconds.
   });
+
+  app.on("error", (err) => {
+    // We should log it somewhere else like a .log file, database or reporting
+    // systems like sentry.
+    console.error("server error", err);
+  });
 }
 
 app.listen(process.env.PORT || 8080);
